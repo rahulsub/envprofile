@@ -1,0 +1,9 @@
+# Production dependencies
+# (none for this project as it uses standard library only)
+
+# Development dependencies
+pytest>=7.0.0
+pytest-cov>=3.0.0
+black>=22.1.0
+flake8>=5.0.0
+mypy>=0.950 

@@ -1,38 +1,54 @@
 # EnvProfile - Environment Variable Profile Manager
 
-This tool lets you create and manage different sets of environment variables that you can easily load when needed.
+[![Python Tests](https://github.com/yourusername/envprofile/actions/workflows/python-tests.yml/badge.svg)](https://github.com/yourusername/envprofile/actions/workflows/python-tests.yml)
+[![PyPI version](https://badge.fury.io/py/envprofile.svg)](https://badge.fury.io/py/envprofile)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+EnvProfile is a tool that lets you create and manage different sets of environment variables that you can easily load when needed. This is particularly useful for developers who work with different projects that require different environment configurations.
+
+## Features
+
+- Create multiple named environment profiles
+- Add, remove, and update environment variables in profiles
+- Load environment variables from profiles into your current shell
+- List available profiles and view their contents
+- Easy to use command-line interface
 
 ## Installation
 
-1. Save the script to a location in your PATH (e.g., `/usr/local/bin/envprofile` or `~/bin/envprofile`):
+### From PyPI (Recommended)
 
-   ```bash
-   # Download the script
-   curl -o /usr/local/bin/envprofile https://your-host/path/to/envprofile.py
-   
-   # Or manually create the file and paste the code in it
-   
-   # Make it executable
-   chmod +x /usr/local/bin/envprofile
-   
-   # Make sure /usr/local/bin is in your PATH (add to your .bashrc or .zshrc if needed)
-   export PATH="/usr/local/bin:$PATH"
-   ```
+```bash
+pip install envprofile
+```
 
-2. Add a shell function to your `.bashrc`, `.zshrc`, or equivalent shell configuration file:
+### From Source
 
-   ```bash
-   # Add this to your shell configuration file
-   function use-env() {
-       eval "$(envprofile load $1)"
-   }
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/envprofile.git
+cd envprofile
 
-3. Reload your shell configuration:
+# Install the package
+pip install -e .
+```
 
-   ```bash
-   source ~/.bashrc  # or ~/.zshrc
-   ```
+### Shell Integration
+
+Add a shell function to your `.bashrc`, `.zshrc`, or equivalent shell configuration file:
+
+```bash
+# Add this to your shell configuration file
+function use-env() {
+    eval "$(envprofile load $1)"
+}
+```
+
+Reload your shell configuration:
+
+```bash
+source ~/.bashrc  # or ~/.zshrc
+```
 
 ## Usage Examples
 
@@ -108,3 +124,50 @@ All profiles are stored in a single JSON file at `~/.config/envprofile/profiles.
   }
 }
 ```
+
+## Advanced Usage
+
+### Using with Docker
+
+You can use EnvProfile to generate environment files for Docker:
+
+```bash
+# Generate a .env file for docker-compose
+envprofile load dev > .env
+```
+
+### Using with Multiple Projects
+
+Create project-specific profiles by using prefixes:
+
+```bash
+# Create profiles for different projects
+envprofile create project1-dev
+envprofile create project1-prod
+envprofile create project2-dev
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue**: Changes to environment variables not appearing in the shell
+
+**Solution**: Make sure you're using the `eval` command or the `use-env` function as described in the installation section.
+
+**Issue**: Error "command not found: envprofile"
+
+**Solution**: Ensure that the installation directory is in your PATH or install using pip.
+
+## Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Inspired by various environment management tools like direnv and autoenv
+- Thanks to all contributors
